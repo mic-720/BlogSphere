@@ -10,12 +10,15 @@
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure body takes full height */
-            margin: 0; /* Remove default margin */
+            min-height: 100vh;
+            /* Ensure body takes full height */
+            margin: 0;
+            /* Remove default margin */
         }
 
         .form-container {
-            flex: 1; /* Allow the form container to grow and fill available space */
+            flex: 1;
+            /* Allow the form container to grow and fill available space */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,15 +28,17 @@
             background-color: #f9f9f9;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Make the form take full width */
-            max-width: 400px; /* Set a max-width for larger screens */
-            padding: 20px; /* Add padding for the form */
+            width: 100%;
+            /* Make the form take full width */
+            max-width: 400px;
+            /* Set a max-width for larger screens */
+            padding: 20px;
+            /* Add padding for the form */
         }
     </style>
 </head>
 
 <body>
-
     <div class="form-container mt-5">
         <form action="/blogs/<%= blog._id %>?_method=PUT" method="post">
             <h1 class="text-center mb-4">Edit Blog</h1>
@@ -43,18 +48,28 @@
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">Content</label>
-                <textarea name="content" class="form-control" id="content" required rows="5" cols="10"><%= blog.content %></textarea>
+                <textarea name="content" class="form-control" id="content" required rows="5"
+                    cols="10"><%= blog.content %></textarea>
             </div>
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select name="category" class="form-select" id="category" required>
                     <option value="" disabled>Select category</option>
-                    <option value="Technology" <%= blog.category === 'Technology' ? 'selected' : '' %>>Technology</option>
-                    <option value="Health" <%= blog.category === 'Health' ? 'selected' : '' %>>Health</option>
-                    <option value="Lifestyle" <%= blog.category === 'Lifestyle' ? 'selected' : '' %>>Lifestyle</option>
-                    <option value="Education" <%= blog.category === 'Education' ? 'selected' : '' %>>Education</option>
-                    <option value="Travel" <%= blog.category === 'Travel' ? 'selected' : '' %>>Travel</option>
-                    <option value="Food" <%= blog.category === 'Food' ? 'selected' : '' %>>Food</option>
+                    <option value="Chai Shai" <%=blog.category==='Chai Shai' ? 'selected' : '' %>>Chai Shai </option>
+                    <option value="Technology" <%=blog.category==='Technology' ? 'selected' : '' %>>Technology</option>
+                    <option value="Health" <%=blog.category==='Health' ? 'selected' : '' %>>Health</option>
+                    <option value="Lifestyle" <%=blog.category==='Lifestyle' ? 'selected' : '' %>>Lifestyle</option>
+                    <option value="Education" <%=blog.category==='Education' ? 'selected' : '' %>>Education</option>
+                    <option value="Travel" <%=blog.category==='Travel' ? 'selected' : '' %>>Travel</option>
+                    <option value="Food" <%=blog.category==='Food' ? 'selected' : '' %>>Food</option>
+                    <option value="Entertainment" <%=blog.category==='Entertainment' ? 'selected' : '' %>>Entertainment
+                    </option>
+                    <option value="Finance" <%=blog.category==='Finance' ? 'selected' : '' %>>Finance</option>
+                    <option value="Fashion" <%=blog.category==='Fashion' ? 'selected' : '' %>>Fashion</option>
+                    <option value="Sports" <%=blog.category==='Sports' ? 'selected' : '' %>>Sports</option>
+                    <option value="Others" <%=blog.category==='Others' ? 'selected' : '' %>>Others</option>
+                    <option value="Miscellaneous" <%=blog.category==='Miscellaneous' ? 'selected' : '' %>>Miscellaneous
+                    </option>
                 </select>
             </div>
             <div class="mb-3">

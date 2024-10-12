@@ -33,6 +33,11 @@
             /* Bootstrap muted color */
         }
 
+        .category {
+            color: #de7c5d; /* Change this to the color you prefer for categories */
+            font-weight: bold; /* Make the category text bold */
+        }
+
         .blogs-container {
             background-color: #f2f2f2;
             /* Light gray background for the blogs section */
@@ -43,19 +48,26 @@
             margin-bottom: 20px;
             /* Space below the blogs section */
         }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .blogs-container {
+                padding: 0.3rem; /* Reduce padding for smaller screens */
+                margin-bottom: 15px; /* Adjust margin if necessary */
+            }
+        }
     </style>
 </head>
 
 <body class="p-5">
 
     <div class="container">
-        <h1 class="text-center m-4 ">Welcome to Your Blogging Journey!
-        </h1>
+        <h1 class="text-center m-4">Welcome to Your Blogging Journey!</h1>
 
         <div class="blogs-container"> <!-- New container for blogs -->
             <ul class="list-group">
                 <% for (let blog of blogs) { %>
-                    <li class="list-group-item mb-3">
+                    <li class="list-group-item m-3">
                         <h5 class="mb-1">
                             <a href="/blogs/<%= blog._id %>" class="blog-title">
                                 <%= blog.title %>
@@ -63,18 +75,18 @@
                         </h5>
                         <p class="meta-info mb-1">
                             <%= blog.createdAt.toLocaleString('default', { month: 'short' }) %>
-                                <%= blog.createdAt.getDate() %>, <%= blog.createdAt.getFullYear() %> |
-                                        <strong>
-                                            <%= blog.category || "Uncategorized" %>
-                                        </strong>
+                            <%= blog.createdAt.getDate() %>, <%= blog.createdAt.getFullYear() %> |
+                            <strong class="category">
+                                <%= blog.category || "Uncategorized" %>
+                            </strong>
                         </p>
                         <p class="mb-1">
                             <% if (blog.content.split(" ").length > 50) { %>
                                 <%= blog.content.split(" ").slice(0, 50).join(" ") %>... 
-                                <a href=" /blogs/<%=blog._id %>">Read more</a>
-                                <% } else { %>
-                                    <%= blog.content %>
-                                        <% } %>
+                                <a href="/blogs/<%= blog._id %>">Read more</a>
+                            <% } else { %>
+                                <%= blog.content %>
+                            <% } %>
                         </p>
                         <small class="text-muted">Views: <%= blog.views %></small>
                         <div class="mt-2">
@@ -87,9 +99,8 @@
                                 <span class="text-muted">No tags</span> <!-- This will display if there are no tags -->
                             <% } %>
                         </div>
-                        
                     </li>
-                    <% } %>
+                <% } %>
             </ul>
         </div>
 
