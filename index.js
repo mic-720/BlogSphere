@@ -5,13 +5,18 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const flash = require("connect-flash");
+const methodOverride = require("method-override");
+const expressLayouts = require("express-ejs-layouts");
 
 const blogRoutes = require("./routes/blogRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const userRoutes = require("./routes/userRoutes");
+
 const User = require("./models/userModel");
 
-const path = require("path")
+const path = require("path");
+var ejsMate = require("ejs-mate");
 
 app.use(
   session({
@@ -25,32 +30,41 @@ app.use(
     },
   })
 );
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(passport.authenticate()));
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.set("view engine","ejs")
-app.set("views",path.join(__dirname,"views"))
+app.use(expressLayouts);
+app.set("layout", "layouts/boilerplate");
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "/public/css")));
+app.use(express.static(path.join(__dirname, "/public/js")));
+app.use(methodOverride("_method"));
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
   next();
-})
+});
+
+
+
+app.get("/", (req, res) => {
+  res.render("blogs/home.ejs");
+});
 
 app.use("/blogs", blogRoutes);
 app.use("/blogs/:blogId/comments", commentRoutes);
-app.use("/", userRoutes);
-
-app.get("/", (req, res) => {
-  res.send("welcome to the world of coding");
-});
+app.use("/auth", userRoutes);
 
 mongoose.connect(process.env.MONGO_URL).then(() => {
   app.listen(process.env.PORT, () => {

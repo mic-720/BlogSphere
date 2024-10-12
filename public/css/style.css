@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Styling */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #0056b3;
+}
+
+.nav-link {
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative;
+  color: #007bff;
+}
+
+.nav-link::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #007bff;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+}
+
+.nav-link:hover {
+  color: #0056b3;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.btn-outline-success {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-outline-danger {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+
