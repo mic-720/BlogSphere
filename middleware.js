@@ -1,17 +1,5 @@
 const Blog = require("./models/blogModel");
 const Comment = require("./models/commentModel");
-const { blogSchema } = require("./schema");
-const { ExpressError } = require("./utils/ExpressError");
-
-module.exports.validateBlogs = (req, res, next) => {
-  let { error } = blogSchema.validate(req.body);
-  if (error) {
-    let errMsg = error.details.map((el) => el.message).join(",");
-    throw new ExpressError(400, errMsg);
-  } else {
-    next();
-  }
-};
 
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
