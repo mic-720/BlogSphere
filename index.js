@@ -59,8 +59,12 @@ app.use((req, res, next) => {
 
 
 app.get("/", (req, res) => {
-  res.render("blogs/home.ejs");
+  res.redirect("/blogs")
 });
+
+app.get("/home",(req,res)=>{
+  res.render("blogs/home.ejs")
+})
 
 app.use("/blogs", blogRoutes);
 app.use("/blogs/:blogId/comments", commentRoutes);
