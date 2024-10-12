@@ -18,7 +18,7 @@ const signup = async (req, res) => {
     });
   } catch (err) {
     req.flash("error", err.message);
-    res.status(400).redirect("/signup");
+    res.status(400).redirect("/auth/signup");
   }
 };
 
