@@ -47,3 +47,19 @@ Blogsphere is a modern, fully responsive blog website built with [Express, Mongo
     Open [http://localhost:5000](http://localhost:5000) in your browser.
 
 
+## Contributions
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](https://github.com/mic-720/BlogSphere/issues).
+
+If you'd like to contribute, please fork the repository, make your changes, and submit a pull request.
+
+### Steps to Contribute:
+1. Fork this repository.
+2. Create a branch: `git checkout -b your-feature`.
+3. Make your changes and commit them: `git commit -m 'Add some feature'`.
+4. Push to the branch: `git push origin your-feature`.
+5. Submit a pull request.
+
+Thank you for contributing!
